@@ -1,0 +1,205 @@
+const WIDTH = 25;
+const HEIGHT = 25;
+const TRAP_COUNT = 18;
+const WALL = "🟧";
+const RABBIT = "🐰";
+const CARROT = "🥕";
+const TRAPS = ["🐍", "💣"];
+const EMPTY = "🌿";
+
+let maze = [];
+let visited = [];
+let rabbit = { x: 1, y: 1 };
+let carrot = { x: 0, y: 0 };
+let time = 0;
+let timerInterval;
+let gameOver = false;
+let winCount = 0;
+let loseCount = 0;
+
+function initMaze() {
+  maze = Array.from({ length: HEIGHT }, () =>
+    Array.from({ length: WIDTH }, () => WALL)
+  );
+  visited = Array.from({ length: HEIGHT }, () =>
+    Array.from({ length: WIDTH }, () => false)
+  );
+  gameOver = false;
+  document.getElementById("result").innerHTML = "";
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function generateMaze(x, y) {
+  visited[y][x] = true;
+  maze[y][x] = EMPTY;
+  const dirs = shuffle([
+    [0, -2],
+    [0, 2],
+    [-2, 0],
+    [2, 0],
+  ]);
+  for (const [dx, dy] of dirs) {
+    const nx = x + dx;
+    const ny = y + dy;
+    if (
+      ny > 0 &&
+      ny < HEIGHT - 1 &&
+      nx > 0 &&
+      nx < WIDTH - 1 &&
+      !visited[ny][nx]
+    ) {
+      maze[y + dy / 2][x + dx / 2] = EMPTY;
+      generateMaze(nx, ny);
+    }
+  }
+}
+
+function placeCarrot() {
+  let x, y;
+  do {
+    x = Math.floor(Math.random() * (WIDTH - 2)) + 1;
+    y = Math.floor(Math.random() * (HEIGHT - 2)) + 1;
+  } while (
+    maze[y][x] !== EMPTY ||
+    Math.abs(x - rabbit.x) + Math.abs(y - rabbit.y) < 10
+  );
+  carrot = { x, y };
+  maze[y][x] = CARROT;
+}
+
+function placeTraps() {
+  let placed = 0;
+  while (placed < TRAP_COUNT) {
+    let x = Math.floor(Math.random() * (WIDTH - 2)) + 1;
+    let y = Math.floor(Math.random() * (HEIGHT - 2)) + 1;
+    if (maze[y][x] === EMPTY && !(x === rabbit.x && y === rabbit.y)) {
+      maze[y][x] = TRAPS[Math.floor(Math.random() * TRAPS.length)];
+      placed++;
+    }
+  }
+}
+
+function drawMaze() {
+  const mazeDiv = document.getElementById("maze");
+  mazeDiv.innerHTML = "";
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      const tile = document.createElement("div");
+      tile.className = "tile";
+
+      if (x === rabbit.x && y === rabbit.y) {
+        tile.classList.add("rabbit");
+        tile.textContent = RABBIT;
+      } else if (maze[y][x] === WALL) {
+        tile.classList.add("wall");
+        tile.textContent = WALL;
+      } else if (maze[y][x] === CARROT) {
+        tile.classList.add("carrot");
+        tile.textContent = CARROT;
+      } else if (TRAPS.includes(maze[y][x])) {
+        tile.classList.add("trap");
+        tile.textContent = maze[y][x];
+      } else {
+        tile.classList.add("empty");
+        tile.textContent = EMPTY;
+      }
+
+      mazeDiv.appendChild(tile);
+    }
+  }
+}
+
+function moveRabbit(dx, dy) {
+  if (gameOver) return;
+  const nx = rabbit.x + dx;
+  const ny = rabbit.y + dy;
+  if (maze[ny]?.[nx] === WALL) return;
+
+  const cell = maze[ny][nx];
+  if (TRAPS.includes(cell)) return endGame(false);
+  if (cell === CARROT) return endGame(true);
+
+  rabbit.x = nx;
+  rabbit.y = ny;
+  drawMaze();
+}
+
+function disarmTrap() {
+  if (gameOver) return;
+  const directions = [
+    [0, -1],
+    [0, 1],
+    [-1, 0],
+    [1, 0],
+  ];
+  for (const [dx, dy] of directions) {
+    const x = rabbit.x + dx;
+    const y = rabbit.y + dy;
+    if (TRAPS.includes(maze[y]?.[x])) {
+      maze[y][x] = EMPTY;
+    }
+  }
+  drawMaze();
+}
+
+function endGame(won) {
+  if (gameOver) return;
+  gameOver = true;
+  clearInterval(timerInterval);
+  const resultText = won
+    ? `🎉 You got the carrot!`
+    : `<span style="color:red;">💥 You hit a trap!</span>`;
+  const result = document.getElementById("result");
+  result.innerHTML = `
+    <p>${resultText}</p>
+    <button onclick="startGame()">Play Again</button>
+    <p>Press <strong>Space</strong> to restart</p>
+  `;
+  if (won) {
+    winCount++;
+    document.getElementById("win-count").textContent = winCount;
+  } else {
+    loseCount++;
+    document.getElementById("lose-count").textContent = loseCount;
+  }
+}
+
+function startTimer() {
+  time = 0;
+  document.getElementById("timer").textContent = `Time: ${time}s`;
+  timerInterval = setInterval(() => {
+    time++;
+    document.getElementById("timer").textContent = `Time: ${time}s`;
+  }, 1000);
+}
+
+function startGame() {
+  document.getElementById("menu").style.display = "none";
+  initMaze();
+  generateMaze(1, 1);
+  rabbit = { x: 1, y: 1 };
+  placeCarrot();
+  placeTraps();
+  drawMaze();
+  clearInterval(timerInterval);
+  startTimer();
+}
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
+  if (key === "w" || e.key === "ArrowUp") moveRabbit(0, -1);
+  else if (key === "s" || e.key === "ArrowDown") moveRabbit(0, 1);
+  else if (key === "a" || e.key === "ArrowLeft") moveRabbit(-1, 0);
+  else if (key === "d" || e.key === "ArrowRight") moveRabbit(1, 0);
+  else if (key === "e" || e.code === "ShiftRight") disarmTrap();
+  else if (e.key === " " && gameOver) startGame();
+});
+
+document.getElementById("start-btn").addEventListener("click", startGame);

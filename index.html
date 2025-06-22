@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🐰 Rabbit Maze</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="menu">
+      <h2>🐰 Rabbit Maze</h2>
+      <button id="start-btn">Start Game</button>
+    </div>
+
+    <div class="left-panel">
+      <h1>🐰 Rabbit Maze</h1>
+      <div id="timer">Time: 0s</div>
+      <div id="result"></div>
+      <div id="scoreboard">
+        <p>🏆 Wins: <span id="win-count">0</span></p>
+        <p>💥 Losses: <span id="lose-count">0</span></p>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div id="maze"></div>
+      <div id="grid-layer"></div>
+      <div id="effect-layer"></div>
+    </div>
+
+    <div id="instructions-box">
+      <h2>🎮 How to Play</h2>
+      <ul>
+        <li>Reach the 🥕 to win</li>
+        <li>
+          <strong>W / A / S / D</strong> or <strong>Arrow Keys</strong> — Move
+          🐰
+        </li>
+        <li>
+          <strong>E</strong> or <strong>Right Shift</strong> — Disarm nearby
+          traps
+        </li>
+        <li>Avoid 🐍 Snakes and 💣 Bombs</li>
+        <li><strong>Spacebar</strong> — Restart after game ends</li>
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
