@@ -149,10 +149,63 @@ function disarmTrap() {
   drawMaze();
 }
 
+function spawnParticles(x, y, color) {
+  const numParticles = 20;
+  for (let i = 0; i < numParticles; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.backgroundColor = color;
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+
+    // Random velocity and direction
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random() * 30;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+
+    particle.style.setProperty("--dx", dx);
+    particle.style.setProperty("--dy", dy);
+
+    document.body.appendChild(particle);
+
+    // Animate and remove after 1s
+    setTimeout(() => {
+      particle.style.transform = `translate(${dx}px, ${dy}px)`;
+      particle.style.opacity = "0";
+    }, 10);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 1100);
+  }
+}
+
 function endGame(won) {
   if (gameOver) return;
   gameOver = true;
   clearInterval(timerInterval);
+
+  // Animation logic
+  const mazeDiv = document.getElementById("maze");
+  const tiles = mazeDiv.children;
+
+  for (let tile of tiles) {
+    if (tile.classList.contains("rabbit")) {
+      tile.classList.remove("winning", "dying");
+      void tile.offsetWidth;
+      tile.classList.add(won ? "winning" : "dying");
+
+      const rabbitTile = tile.getBoundingClientRect();
+      spawnParticles(
+        rabbitTile.left + tile.offsetWidth / 2,
+        rabbitTile.top + tile.offsetHeight / 2,
+        won ? "#0f0" : "red"
+      );
+      break;
+    }
+  }
+
   const resultText = won
     ? `🎉 You got the carrot!`
     : `<span style="color:red;">💥 You hit a trap!</span>`;
@@ -162,6 +215,7 @@ function endGame(won) {
     <button onclick="startGame()">Play Again</button>
     <p>Press <strong>Space</strong> to restart</p>
   `;
+
   if (won) {
     winCount++;
     document.getElementById("win-count").textContent = winCount;
