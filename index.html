@@ -7,29 +7,32 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Start Menu -->
     <div id="menu">
       <h2>🐰 Rabbit Maze</h2>
       <button id="start-btn">Start Game</button>
-      <!-- test comment -->
-      <!-- test comment -->
     </div>
 
-    <div class="left-panel">
-      <h1>🐰 Rabbit Maze</h1>
-      <div id="timer">Time: 0s</div>
-      <div id="result"></div>
-      <div id="scoreboard">
-        <p>🏆 Wins: <span id="win-count">0</span></p>
-        <p>💥 Losses: <span id="lose-count">0</span></p>
+    <!-- Game Container (centered using Flexbox) -->
+    <div class="game-container" style="display: none">
+      <div class="left-panel">
+        <h1>🐰 Rabbit Maze</h1>
+        <div id="timer">Time: 0s</div>
+        <div id="result"></div>
+        <div id="scoreboard">
+          <p>🏆 Wins: <span id="win-count">0</span></p>
+          <p>💥 Losses: <span id="lose-count">0</span></p>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div id="maze"></div>
+        <div id="grid-layer"></div>
+        <div id="effect-layer"></div>
       </div>
     </div>
 
-    <div class="right-panel">
-      <div id="maze"></div>
-      <div id="grid-layer"></div>
-      <div id="effect-layer"></div>
-    </div>
-
+    <!-- Instructions -->
     <div id="instructions-box">
       <h2>🎮 How to Play</h2>
       <ul>
@@ -47,6 +50,7 @@
       </ul>
     </div>
 
+    <!-- JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

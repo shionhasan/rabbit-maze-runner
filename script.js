@@ -256,4 +256,8 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === " " && gameOver) startGame();
 });
 
-document.getElementById("start-btn").addEventListener("click", startGame);
+document.getElementById("start-btn").addEventListener("click", () => {
+  document.getElementById("menu").style.display = "none";
+  document.querySelector(".game-container").style.display = "flex";
+  startGame();
+});
