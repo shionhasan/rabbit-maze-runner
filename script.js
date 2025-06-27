@@ -258,6 +258,12 @@ document.addEventListener("keydown", (e) => {
 
 document.getElementById("start-btn").addEventListener("click", () => {
   document.getElementById("menu").style.display = "none";
-  document.querySelector(".game-container").style.display = "flex";
-  startGame();
+  document.getElementById("game-container").style.display = "flex";
+  startGame(); // this is your game init function
+});
+
+document.getElementById("toggle-instructions").addEventListener("click", () => {
+  const box = document.getElementById("instructions-box");
+  box.style.display =
+    box.style.display === "none" || box.style.display === "" ? "block" : "none";
 });

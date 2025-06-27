@@ -1,5 +1,5 @@
 body {
-  background: url("https://i.pinimg.com/1200x/4f/29/f4/4f29f4ff0fb9175bee19e38b78f6ad47.jpg")
+  background: url("https://i.pinimg.com/1200x/ae/31/af/ae31afd4be8c4f487673e4e52b7e110c.jpg")
     no-repeat center center fixed;
   background-size: cover;
   color: #0f0;
@@ -88,8 +88,7 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
 h1 {
@@ -110,28 +109,40 @@ h1 {
 }
 
 #maze {
+  /* ... your existing styles ... */
+  border: 1px solid #0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #0f0, 0 0 24px #0f0, 0 0 36px #0f0;
+  background-color: #000;
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(25, 24px);
   grid-auto-rows: 24px;
   gap: 1px;
-  font-size: 20px;
-  background: #000;
-  padding: 10px;
-  border: 1px solid #0f0;
-  border-radius: 8px;
-  box-shadow: 0 0 12px #0f0, 0 0 24px #0f0;
   max-height: 90vh;
   overflow: auto;
+}
+
+#toggle-instructions {
+  background: #222;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 6px 12px;
+  font-family: monospace;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 12px;
 }
 
 .tile {
   width: 24px;
   height: 24px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-size: 22px; /* 👈 Make emojis big */
+  line-height: 1;
 }
-
 .wall {
   background: #222;
 }
@@ -197,26 +208,32 @@ h1 {
 }
 
 #instructions-box {
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-  width: 320px;
-  background-color: rgba(20, 144, 1, 0.9);
-  color: white;
-  padding: 15px 20px;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: rgba(20, 144, 1, 0.9);
+  color: #fff;
   border-radius: 8px;
-  font-size: 1.1em;
+  font-size: 0.95em;
   box-shadow: 0 0 12px 3px rgba(92, 255, 16, 0.7);
-  z-index: 1000;
+  max-height: 160px;
+  overflow-y: auto;
 }
 
 #instructions-box h2 {
-  margin: 0;
+  margin-top: 0;
+  color: #fff;
+  font-weight: bold;
   text-align: center;
 }
 
 #instructions-box ul {
+  margin: 0;
   padding-left: 20px;
+}
+
+#instructions-box li {
+  margin-bottom: 6px;
+  line-height: 1.4;
 }
 
 #scoreboard {

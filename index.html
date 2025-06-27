@@ -2,19 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🐰 Rabbit Maze</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Start Menu -->
     <div id="menu">
       <h2>🐰 Rabbit Maze</h2>
       <button id="start-btn">Start Game</button>
     </div>
 
-    <!-- Game Container (centered using Flexbox) -->
-    <div class="game-container" style="display: none">
+    <div class="container" id="game-container">
       <div class="left-panel">
         <h1>🐰 Rabbit Maze</h1>
         <div id="timer">Time: 0s</div>
@@ -23,8 +20,23 @@
           <p>🏆 Wins: <span id="win-count">0</span></p>
           <p>💥 Losses: <span id="lose-count">0</span></p>
         </div>
+        <button id="toggle-instructions">📘 How to Play</button>
+        <div id="instructions-box" style="display: none">
+          <h2>🎮 How to Play</h2>
+          <ul>
+            <li>Reach the 🥕 to win</li>
+            <li>
+              <strong>W / A / S / D</strong> or <strong>Arrow Keys</strong> —
+              Move 🐰
+            </li>
+            <li>
+              <strong>E</strong> or <strong>Right Shift</strong> — Disarm traps
+            </li>
+            <li>Avoid 🐍 Snakes and 💣 Bombs</li>
+            <li><strong>Spacebar</strong> — Restart after game ends</li>
+          </ul>
+        </div>
       </div>
-
       <div class="right-panel">
         <div id="maze"></div>
         <div id="grid-layer"></div>
@@ -32,25 +44,6 @@
       </div>
     </div>
 
-    <!-- Instructions -->
-    <div id="instructions-box">
-      <h2>🎮 How to Play</h2>
-      <ul>
-        <li>Reach the 🥕 to win</li>
-        <li>
-          <strong>W / A / S / D</strong> or <strong>Arrow Keys</strong> — Move
-          🐰
-        </li>
-        <li>
-          <strong>E</strong> or <strong>Right Shift</strong> — Disarm nearby
-          traps
-        </li>
-        <li>Avoid 🐍 Snakes and 💣 Bombs</li>
-        <li><strong>Spacebar</strong> — Restart after game ends</li>
-      </ul>
-    </div>
-
-    <!-- JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>
