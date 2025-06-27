@@ -13,6 +13,8 @@ body {
   justify-content: center;
   overflow: hidden;
   position: relative;
+  touch-action: manipulation;
+  overflow-x: hidden;
 }
 
 /* Dark overlay */
@@ -138,6 +140,28 @@ h1 {
   font-size: 1em;
   cursor: pointer;
   margin-top: 12px;
+}
+
+#touch-controls {
+  display: none;
+  margin-top: 15px;
+  text-align: center;
+}
+
+#touch-controls button {
+  background: #222;
+  color: #0f0;
+  border: 1px solid #0f0;
+  font-size: 1.8em;
+  margin: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .tile {
+    font-size: 16px;
+  }
 }
 
 .tile {

@@ -24,6 +24,21 @@
           <p>💥 Losses: <span id="lose-count">0</span></p>
         </div>
 
+        <!-- Mobile Touch Controls -->
+        <div id="touch-controls">
+          <div>
+            <button onclick="moveRabbit(0, -1)">⬆️</button>
+          </div>
+          <div>
+            <button onclick="moveRabbit(-1, 0)">⬅️</button>
+            <button onclick="disarmTrap()">🧨</button>
+            <button onclick="moveRabbit(1, 0)">➡️</button>
+          </div>
+          <div>
+            <button onclick="moveRabbit(0, 1)">⬇️</button>
+          </div>
+        </div>
+
         <div id="result" class="result-box"></div>
         <!-- ✅ Move it here -->
 
