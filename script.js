@@ -262,6 +262,26 @@ document.getElementById("start-btn").addEventListener("click", () => {
   startGame(); // this is your game init function
 });
 
+// Touch buttons movement
+document
+  .getElementById("up")
+  .addEventListener("click", () => moveRabbit(0, -1));
+document
+  .getElementById("down")
+  .addEventListener("click", () => moveRabbit(0, 1));
+document
+  .getElementById("left")
+  .addEventListener("click", () => moveRabbit(-1, 0));
+document
+  .getElementById("right")
+  .addEventListener("click", () => moveRabbit(1, 0));
+
+// Disarm and restart
+document.getElementById("disarm").addEventListener("click", () => disarmTrap());
+document.getElementById("restart").addEventListener("click", () => {
+  if (gameOver) startGame();
+});
+
 document.getElementById("toggle-instructions").addEventListener("click", () => {
   const box = document.getElementById("instructions-box");
   box.style.display =

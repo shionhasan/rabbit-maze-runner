@@ -163,6 +163,52 @@ h1 {
     font-size: 16px;
   }
 }
+#mobile-controls {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  text-align: center;
+  user-select: none;
+}
+
+.dpad button,
+.actions button {
+  font-size: 1.5em;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 2px solid #0f0;
+  background-color: #111;
+  color: #0f0;
+  border-radius: 8px;
+}
+
+.dpad {
+  margin-bottom: 10px;
+}
+
+/* Show controls only on small screens */
+@media (max-width: 768px) {
+  #mobile-controls {
+    display: block;
+  }
+
+  .left-panel {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right-panel {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}
 
 .tile {
   width: 24px;
