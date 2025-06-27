@@ -211,10 +211,10 @@ function endGame(won) {
     : `<span style="color:red;">💥 You hit a trap!</span>`;
   const result = document.getElementById("result");
   result.innerHTML = `
-    <p>${resultText}</p>
-    <button onclick="startGame()">Play Again</button>
-    <p>Press <strong>Space</strong> to restart</p>
-  `;
+  <p>${resultText}</p>
+  <button class="play-again" onclick="startGame()">Play Again</button>
+  <p>Press <strong>Space</strong> to restart</p>
+`;
 
   if (won) {
     winCount++;

@@ -6,20 +6,27 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Start Menu -->
     <div id="menu">
       <h2>🐰 Rabbit Maze</h2>
       <button id="start-btn">Start Game</button>
     </div>
 
+    <!-- Main Game Container -->
     <div class="container" id="game-container">
+      <!-- Left Panel: Info & Controls -->
       <div class="left-panel">
         <h1>🐰 Rabbit Maze</h1>
         <div id="timer">Time: 0s</div>
-        <div id="result"></div>
+
         <div id="scoreboard">
           <p>🏆 Wins: <span id="win-count">0</span></p>
           <p>💥 Losses: <span id="lose-count">0</span></p>
         </div>
+
+        <div id="result" class="result-box"></div>
+        <!-- ✅ Move it here -->
+
         <button id="toggle-instructions">📘 How to Play</button>
         <div id="instructions-box" style="display: none">
           <h2>🎮 How to Play</h2>
@@ -37,6 +44,8 @@
           </ul>
         </div>
       </div>
+
+      <!-- Right Panel: Maze Display -->
       <div class="right-panel">
         <div id="maze"></div>
         <div id="grid-layer"></div>
@@ -44,6 +53,7 @@
       </div>
     </div>
 
+    <!-- Game Logic -->
     <script src="script.js"></script>
   </body>
 </html>

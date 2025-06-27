@@ -84,11 +84,12 @@ body::before {
 }
 
 .right-panel {
-  width: 65%;
+  background: transparent; /* ✅ Add this if it's missing */
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -109,18 +110,23 @@ h1 {
 }
 
 #maze {
-  /* ... your existing styles ... */
-  border: 1px solid #0f0;
-  border-radius: 8px;
-  box-shadow: 0 0 12px #0f0, 0 0 24px #0f0, 0 0 36px #0f0;
-  background-color: #000;
-  padding: 10px;
   display: grid;
   grid-template-columns: repeat(25, 24px);
   grid-auto-rows: 24px;
   gap: 1px;
-  max-height: 90vh;
-  overflow: auto;
+  white-space: pre;
+  font-size: 20px;
+  line-height: 1.2;
+
+  background-color: transparent; /* ✅ Make background transparent */
+  border: 1px solid #0f0;
+  border-radius: 8px;
+  box-shadow: none; /* ✅ Remove glowing */
+
+  /* ✅ Remove scrollbars */
+  overflow: hidden;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 
 #toggle-instructions {
@@ -143,14 +149,48 @@ h1 {
   font-size: 22px; /* 👈 Make emojis big */
   line-height: 1;
 }
-.wall {
-  background: #222;
+
+.result-box {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: white;
 }
-.empty,
+
+.result-box p {
+  margin: 5px 0;
+}
+
+button.play-again {
+  background: transparent;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 8px 16px;
+  font-family: monospace;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #0f0;
+  margin-top: 8px;
+  transition: 0.3s ease;
+}
+
+button.play-again:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+  box-shadow: 0 0 14px #0f0;
+}
+
+.wall {
+  background-color: rgba(255, 255, 255, 0.05); /* Just a faint tint */
+}
+
+.empty {
+  background-color: rgba(255, 255, 255, 0.02); /* faint empty tile background */
+}
+
 .rabbit,
 .carrot,
 .trap {
-  background: #111;
+  background-color: rgba(255, 255, 255, 0.02);
 }
 .rabbit {
   transform: scale(1.2);
