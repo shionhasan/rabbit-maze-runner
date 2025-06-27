@@ -287,3 +287,24 @@ document.getElementById("toggle-instructions").addEventListener("click", () => {
   box.style.display =
     box.style.display === "none" || box.style.display === "" ? "block" : "none";
 });
+// Make sure DOM is ready
+window.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("up")
+    .addEventListener("click", () => moveRabbit(0, -1));
+  document
+    .getElementById("down")
+    .addEventListener("click", () => moveRabbit(0, 1));
+  document
+    .getElementById("left")
+    .addEventListener("click", () => moveRabbit(-1, 0));
+  document
+    .getElementById("right")
+    .addEventListener("click", () => moveRabbit(1, 0));
+  document
+    .getElementById("disarm")
+    .addEventListener("click", () => disarmTrap());
+  document.getElementById("restart").addEventListener("click", () => {
+    if (gameOver) startGame();
+  });
+});

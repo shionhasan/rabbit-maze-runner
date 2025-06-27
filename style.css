@@ -191,23 +191,59 @@ h1 {
 
 /* Show controls only on small screens */
 @media (max-width: 768px) {
-  #mobile-controls {
-    display: block;
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .left-panel {
     width: 100%;
     text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .right-panel {
     width: 100%;
+    display: flex;
     justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
-  .container {
-    flex-direction: column;
+  #maze {
+    transform: scale(0.9); /* Scale the maze for smaller screens */
+    max-width: 100%;
+    overflow-x: auto;
   }
+
+  #mobile-controls {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    text-align: center;
+  }
+
+  .dpad button,
+  .actions button {
+    font-size: 1.4em;
+    padding: 10px 14px;
+    margin: 5px;
+    border: 2px solid #0f0;
+    background-color: #111;
+    color: #0f0;
+    border-radius: 6px;
+    font-family: monospace;
+  }
+}
+
+/* Hide mobile controls by default */
+#mobile-controls {
+  display: none;
 }
 
 .tile {
