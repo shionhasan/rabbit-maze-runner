@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <!-- Start Menu -->
+    <!-- 🎮 Start Menu -->
     <div id="menu">
       <h2>🐰 Rabbit Maze</h2>
       <button id="start-btn">Start Game</button>
     </div>
 
-    <!-- Main Game Container -->
+    <!-- 🧩 Main Game Container -->
     <div class="container" id="game-container">
-      <!-- Left Panel: Info & Controls -->
+      <!-- 🔍 Left Panel -->
       <div class="left-panel">
         <h1>🐰 Rabbit Maze</h1>
         <div id="timer">Time: 0s</div>
@@ -25,24 +25,10 @@
           <p>💥 Losses: <span id="lose-count">0</span></p>
         </div>
 
-        <!-- Mobile Touch Controls -->
-        <div id="touch-controls">
-          <div>
-            <button onclick="moveRabbit(0, -1)">⬆️</button>
-          </div>
-          <div>
-            <button onclick="moveRabbit(-1, 0)">⬅️</button>
-            <button onclick="disarmTrap()">🧨</button>
-            <button onclick="moveRabbit(1, 0)">➡️</button>
-          </div>
-          <div>
-            <button onclick="moveRabbit(0, 1)">⬇️</button>
-          </div>
-        </div>
-
+        <!-- 📘 Game Result -->
         <div id="result" class="result-box"></div>
-        <!-- ✅ Move it here -->
 
+        <!-- 📖 Instructions -->
         <button id="toggle-instructions">📘 How to Play</button>
         <div id="instructions-box" style="display: none">
           <h2>🎮 How to Play</h2>
@@ -61,7 +47,7 @@
         </div>
       </div>
 
-      <!-- Right Panel: Maze Display -->
+      <!-- 🗺️ Right Panel -->
       <div class="right-panel">
         <div id="maze"></div>
         <div id="grid-layer"></div>
@@ -69,23 +55,20 @@
       </div>
     </div>
 
-    <!-- Mobile Touch Controls -->
+    <!-- 📱 Mobile Touch Controls (Hidden on Desktop) -->
     <div id="mobile-controls">
       <div class="dpad">
-        <button id="up">⬆️</button>
-        <div>
-          <button id="left">⬅️</button>
-          <button id="down">⬇️</button>
-          <button id="right">➡️</button>
-        </div>
+        <button id="up">⬆️</button><br />
+        <button id="left">⬅️</button>
+        <button id="down">⬇️</button>
+        <button id="right">➡️</button>
       </div>
       <div class="actions">
         <button id="disarm">🛡️ Disarm</button>
-        <button id="restart">🔁 Restart</button>
       </div>
     </div>
 
-    <!-- Game Logic -->
+    <!-- 🧠 Game Logic -->
     <script src="script.js"></script>
   </body>
 </html>

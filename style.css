@@ -1,3 +1,4 @@
+/* 🌌 General Layout */
 body {
   background: url("https://i.pinimg.com/1200x/ae/31/af/ae31afd4be8c4f487673e4e52b7e110c.jpg")
     no-repeat center center fixed;
@@ -17,7 +18,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Dark overlay */
+/* 🔲 Dark overlay for dimming background */
 body::before {
   content: "";
   position: absolute;
@@ -25,16 +26,11 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Adjust the last value to control darkness (0.5 = 50% dark) */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
 
-/* Make sure all game content stays above the dark overlay */
+/* 🧱 Game Container Layers */
 .left-panel,
 .right-panel,
 #menu,
@@ -50,6 +46,7 @@ body::before {
   gap: 40px;
 }
 
+/* 🟩 Menu */
 #menu {
   position: fixed;
   inset: 0;
@@ -77,6 +74,7 @@ body::before {
   font-family: monospace;
 }
 
+/* 🟩 Side Panels */
 .left-panel {
   width: 35%;
   padding: 20px;
@@ -86,7 +84,7 @@ body::before {
 }
 
 .right-panel {
-  background: transparent; /* ✅ Add this if it's missing */
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,6 +92,7 @@ body::before {
   box-sizing: border-box;
 }
 
+/* 🧪 Titles */
 h1 {
   color: white;
   font-size: 3em;
@@ -111,6 +110,12 @@ h1 {
   margin-top: 10px;
 }
 
+#scoreboard {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+/* 🧩 Maze Grid */
 #maze {
   display: grid;
   grid-template-columns: repeat(25, 24px);
@@ -119,18 +124,16 @@ h1 {
   white-space: pre;
   font-size: 20px;
   line-height: 1.2;
-
-  background-color: transparent; /* ✅ Make background transparent */
+  background-color: transparent;
   border: 1px solid #0f0;
   border-radius: 8px;
-  box-shadow: none; /* ✅ Remove glowing */
-
-  /* ✅ Remove scrollbars */
+  box-shadow: none;
   overflow: hidden;
   max-width: fit-content;
   max-height: fit-content;
 }
 
+/* ⓘ Instructions */
 #toggle-instructions {
   background: #222;
   color: #0f0;
@@ -140,217 +143,6 @@ h1 {
   font-size: 1em;
   cursor: pointer;
   margin-top: 12px;
-}
-
-#touch-controls {
-  display: none;
-  margin-top: 15px;
-  text-align: center;
-}
-
-#touch-controls button {
-  background: #222;
-  color: #0f0;
-  border: 1px solid #0f0;
-  font-size: 1.8em;
-  margin: 4px;
-  padding: 10px 14px;
-  border-radius: 6px;
-}
-
-@media (max-width: 768px) {
-  .tile {
-    font-size: 16px;
-  }
-}
-#mobile-controls {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  text-align: center;
-  user-select: none;
-}
-
-.dpad button,
-.actions button {
-  font-size: 1.5em;
-  padding: 10px 20px;
-  margin: 5px;
-  border: 2px solid #0f0;
-  background-color: #111;
-  color: #0f0;
-  border-radius: 8px;
-}
-
-.dpad {
-  margin-bottom: 10px;
-}
-
-/* Show controls only on small screens */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .left-panel {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .right-panel {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  #maze {
-    transform: scale(0.9); /* Scale the maze for smaller screens */
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  #mobile-controls {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    text-align: center;
-  }
-
-  .dpad button,
-  .actions button {
-    font-size: 1.4em;
-    padding: 10px 14px;
-    margin: 5px;
-    border: 2px solid #0f0;
-    background-color: #111;
-    color: #0f0;
-    border-radius: 6px;
-    font-family: monospace;
-  }
-}
-
-/* Hide mobile controls by default */
-#mobile-controls {
-  display: none;
-}
-
-.tile {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px; /* 👈 Make emojis big */
-  line-height: 1;
-}
-
-.result-box {
-  font-size: 1.2em;
-  margin-bottom: 15px;
-  color: white;
-}
-
-.result-box p {
-  margin: 5px 0;
-}
-
-button.play-again {
-  background: transparent;
-  color: #0f0;
-  border: 1px solid #0f0;
-  padding: 8px 16px;
-  font-family: monospace;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 6px;
-  box-shadow: 0 0 8px #0f0;
-  margin-top: 8px;
-  transition: 0.3s ease;
-}
-
-button.play-again:hover {
-  background-color: rgba(0, 255, 0, 0.1);
-  box-shadow: 0 0 14px #0f0;
-}
-
-.wall {
-  background-color: rgba(255, 255, 255, 0.05); /* Just a faint tint */
-}
-
-.empty {
-  background-color: rgba(255, 255, 255, 0.02); /* faint empty tile background */
-}
-
-.rabbit,
-.carrot,
-.trap {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-.rabbit {
-  transform: scale(1.2);
-}
-.rabbit.dying {
-  animation: dying 0.7s forwards;
-}
-.rabbit.winning {
-  animation: winning 1s ease-in-out forwards;
-}
-
-/* Particle effect container */
-.particle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  opacity: 1;
-  pointer-events: none;
-  transition: transform 1s ease-out, opacity 1s ease-out;
-  will-change: transform, opacity;
-  z-index: 10000;
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(1) translate(0, 0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.5) translate(var(--x), var(--y));
-    opacity: 0;
-  }
-}
-
-@keyframes dying {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5) translateY(20px);
-  }
-}
-
-@keyframes winning {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.3) translateY(-10px);
-  }
 }
 
 #instructions-box {
@@ -382,7 +174,184 @@ button.play-again:hover {
   line-height: 1.4;
 }
 
-#scoreboard {
-  margin-top: 10px;
+/* 🧱 Tile Styling */
+.tile {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.wall {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.empty {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.rabbit,
+.carrot,
+.trap {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.rabbit {
+  transform: scale(1.2);
+}
+
+.rabbit.dying {
+  animation: dying 0.7s forwards;
+}
+
+.rabbit.winning {
+  animation: winning 1s ease-in-out forwards;
+}
+
+/* 🔁 Animations */
+@keyframes dying {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+}
+
+@keyframes winning {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3) translateY(-10px);
+  }
+}
+
+/* 🌟 Result Box */
+.result-box {
   font-size: 1.2em;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.result-box p {
+  margin: 5px 0;
+}
+
+button.play-again {
+  background: transparent;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 8px 16px;
+  font-family: monospace;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #0f0;
+  margin-top: 8px;
+  transition: 0.3s ease;
+}
+
+button.play-again:hover {
+  background-color: rgba(0, 255, 0, 0.1);
+  box-shadow: 0 0 14px #0f0;
+}
+
+/* 🎇 Particle Animation */
+.particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 1;
+  pointer-events: none;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  will-change: transform, opacity;
+  z-index: 10000;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) translate(var(--x), var(--y));
+    opacity: 0;
+  }
+}
+
+/* 📱 Mobile Controls */
+#mobile-controls {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  #maze {
+    transform: scale(0.9);
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  #mobile-controls {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    text-align: center;
+    user-select: none;
+  }
+
+  .dpad button,
+  .actions button {
+    font-size: 1.4em;
+    padding: 10px 14px;
+    margin: 5px;
+    border: 2px solid #0f0;
+    background-color: #111;
+    color: #0f0;
+    border-radius: 6px;
+    font-family: monospace;
+  }
+
+  .tile {
+    font-size: 16px;
+  }
+}
+
+.dpad {
+  margin-bottom: 10px;
+}
+
+.dpad button,
+.actions button {
+  font-size: 1.5em;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 2px solid #0f0;
+  background-color: #111;
+  color: #0f0;
+  border-radius: 8px;
 }
